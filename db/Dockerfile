@@ -6,6 +6,7 @@ ENV MYSQL_ROOT_PASSWORD=fagprove
 ADD backend.sql /tmp/backend.sql
 ADD install.sh /tmp/install.sh
 
-RUN /tmp/install.sh
+# RUN echo 'default_authentication_plugin=mysql_native_password' >> /etc/mysql/conf.d/docker.cnf
+# RUN /tmp/install.sh
 
-VOLUME mysql:/var/lib/mysql
+VOLUME /var/lib/mysql:mysql

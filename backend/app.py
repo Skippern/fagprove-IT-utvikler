@@ -1,8 +1,7 @@
 from flask import Flask, jsonify, request
+from flask_sqlalchemy import SQLAlchemy
 import json
 import mysql.connector
-
-app = Flask(__name__)
 
 try:
     with open('config.json', encoding='utf-8') as file:
@@ -11,13 +10,14 @@ except:
     c ={
         "nasa_api_key": "CHANGE ME",
         "db_site": "db",
-        "db_port": 3306,
+        # "db_port": 33060,
         "db": "nfri",
         "db_user": "nfri",
         "db_passwd": "CHANGE ME"
     }
     with open('config.json', 'w', encoding='utf-8') as file:
         file.write(json.dumps(c, indent=4))
+    print('config.json opprettet med default verdier')
     exit(3)
 try:
     db = mysql.connector.connect(
@@ -27,8 +27,19 @@ try:
         database=c['db']
     )
     cursor = db.cursor(buffered=True)
-except:
-    exit(4)
+except Exception as e:
+    print('Database ikke koblet til')
+    print(e)
+    # exit(4)
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://%s:%s@%s/%s' % (c['db_user'],c['db_passwd'],c['db_site'],c['db'])
+try:
+    dbA = SQLAlchemy(app)
+except Exception as e:
+    print('SQLAlchemy failed')
+    print(e)
+    pass
 
 @app.route('/api/v1/login')
 def v1_login():
