@@ -1,9 +1,18 @@
 version: '3'
 services:
+  data:
+    container_name: myslq_data
+    image: mysql:latest
+    volumes:
+      - /var/lib/mysql
+    command: "true"
+
   db:
     build: ./db
     ports:
       - '3306:3306'
+    volumes_from:
+      - data
   backend:
     build: ./backend
     ports:
