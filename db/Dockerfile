@@ -3,8 +3,9 @@ FROM mysql:latest
 ENV MYSQL_DATABASE=nfri
 ENV MYSQL_ROOT_PASSWORD=fagprove
 
-COPY backend.sql .
+ADD backend.sql /tmp/backend.sql
+ADD install.sh /tmp/install.sh
 
-# RUN mysql -u root -pfagprove nfri < backend.sql
+RUN /tmp/install.sh
 
-VOLUME /var/lib/mysql
+VOLUME mysql:/var/lib/mysql
