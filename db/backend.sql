@@ -5,24 +5,25 @@ SET time_zone = "+00:00";
 
 
 CREATE TABLE IF NOT EXISTS `users` (
-    `ID` int NOT NULL AUTOINCREMENT,
-    `user` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Username for login',
-    `password` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Password (should not be plaintext)',
-    `email` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Email for newsletter and password recovery',
-    `phone` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'phone number, optional',
+    `ID` int NOT NULL AUTO_INCREMENT,
+    `user` varchar(128) NOT NULL COMMENT 'Username for login',
+    `password` varchar(128) NOT NULL COMMENT 'Password (should not be plaintext)',
+    `email` varchar(128) NOT NULL COMMENT 'Email for newsletter and password recovery',
+    `phone` varchar(16) NULL COMMENT 'phone number, optional',
     `newsletter` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Accepted newsletters',
     PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List of registered users';
 
 CREATE TABLE IF NOT EXISTS `objects` (
-    `ID` int NOT NULL AUTOINCREMENT,
-    `name` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Object Name',
-    `diameter` float NOT NULL COMMENT 'Object average diameter in m',
-    `velocity` float NOT NULL COMMENT 'Object velocity in km/s',
+    `ID` bigint NOT NULL AUTO_INCREMENT,
+    `name` varchar(128) NOT NULL COMMENT 'Object Name',
+    `diameter` float NOT NULL DEFAULT '0.0' COMMENT 'Object average diameter in m',
+    `velocity` float NOT NULL DEFAULT '0.0' COMMENT 'Object velocity in km/s',
     `closestApproachTime` TIMESTAMP NOT NULL COMMENT 'Time of Closest Approach',
     `potentiallyHazardous` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Is Object potentially Hazardous',
-    `closestDistance` int NOT NULL COMMENT 'Closest distance in megameters'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List of Objects, cache from NASA with our data structure'
+    `closestDistance` int NOT NULL COMMENT 'Closest distance in megameters',
+    PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List of Objects, cache from NASA with our data structure';
 
 -- CREATE TABLE IF NOT EXISTS `session` (
 --     `uID` int,

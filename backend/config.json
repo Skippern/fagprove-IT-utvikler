@@ -1,3 +1,8 @@
 {
-    "nasa_api_key": "VaRS6VafelTFtInJsJsJDndpxTZjeUJiUZefnj66"
+    "nasa_api_key": "VaRS6VafelTFtInJsJsJDndpxTZjeUJiUZefnj66",
+    "db_site": "",
+    "db": "nfri",
+    "db_port": 3306,
+    "db_user": "nfri",
+    "db_passwd": "fagpr0ve"
 }
