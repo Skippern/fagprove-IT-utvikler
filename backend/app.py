@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_mail import Mail, Message
 # from flask_httpauth import HTTPBasicAuth
 import json
 import mysql.connector
@@ -19,7 +20,12 @@ except:
         # "db_port": 33060,
         "db": "nfri",
         "db_user": "nfri",
-        "db_passwd": "CHANGE ME"
+        "db_passwd": "CHANGE ME",
+        "mail-server": 'smtp.example.com',
+        'mail-port': 587,
+        'mail-use-tls': True,
+        'mail-username': 'your-email@example.com',
+        'mail-password': 'your-email-password'
     }
     with open('config.json', 'w', encoding='utf-8') as file:
         file.write(json.dumps(c, indent=4))
@@ -39,6 +45,13 @@ except Exception as e:
     # exit(4)
 
 app = Flask(__name__)
+
+app.config['MAIL_SERVER'] = c['mail-server']
+app.config['MAIL_PORT'] = c['mail-port']
+app.config['MAIL_USE_TLS'] = c['mail-use-tls']
+app.config['MAIL_USERNAME'] = c['mail-username']
+app.config['MAIL_PASSWORD'] = c['mail-password']
+mailer = Mail(app)
 
 def userList():
     u = {}
@@ -77,8 +90,40 @@ def v1_login():
 
 @app.route('/api/v1/user/reset')
 def v1_userReset():
-    r = { 'error': 'Reset User Not Ready' }
-    return jsonify(r)
+    username = request.args.get('user')
+    mail = request.args.get('email')
+    if username == None or mail == None:
+        r = {
+            'error': 'Missing mandatory fields'
+        }
+        return jsonify(r), 400
+    if username not in userList():
+        r = {
+            'error': 'No User %s' % username
+        }
+        return jsonify(r), 400
+    sql = "SELECT email FROM users WHERE user = '%s'" % username
+    cursor.execute(sql)
+    rslt = cursor.fetchone()
+    if mail not in rslt:
+        r = {
+            'error': 'E-Mail don\'t match for user %s' % username
+        }
+        return jsonify(r), 401
+    new_pass = generate_password()
+    try:
+        msg = Message('Ditt passord har blitt endret',
+                    sender='post@naif.no',
+                    recipients=[mail])
+        msg.body('Ditt nye passord er: %s' % new_pass)
+        mailer.send(msg)
+    except Exception as e:
+        print(e)
+    sql = "UPDATE `users` SET `password` = '%s' WHERE user = '%s' and email = '%s'" % (new_pass, username, mail)
+    cursor.execute(sql)
+    db.commit()
+    r = { 'result': 'E-mail with instructions sent' }
+    return jsonify(r), 202
 
 @app.route('/api/v1/user/create')
 def v_userCreate():

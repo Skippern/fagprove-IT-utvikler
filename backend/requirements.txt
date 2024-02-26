@@ -1,5 +1,6 @@
 flask
 # flask_sqlalchemy
+Flask-Mail
 flask_httpauth
 # mysql.connector>=2.2.9
 mysql-connector-python
