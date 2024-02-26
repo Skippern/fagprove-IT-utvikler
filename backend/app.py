@@ -37,8 +37,6 @@ except Exception as e:
     print(e)
     # exit(4)
 
-global users
-
 app = Flask(__name__)
 
 def userList():
@@ -55,13 +53,10 @@ def userList():
         print(e)
         print('Failed to get users')
         return {}
-        # pass
-
-users = userList()
-# httpauth = HTTPBasicAuth()
 
 @app.route('/api/v1/username')
 def v1_userExist():
+    users = userList()
     test = request.args.get('user')
     r = { 'available': True }
     if test in users:
@@ -70,11 +65,14 @@ def v1_userExist():
 
 @app.route('/api/v1/login')
 def v1_login():
-    global users
+    users = userList()
     print(users)
     login = auth(request.headers.get('Authorization'), users)
     r = { 'login': login }
-    return jsonify(r)
+    code = 401
+    if login:
+        code = 200
+    return jsonify(r), code
 
 @app.route('/api/v1/user/reset')
 def v1_userReset():
@@ -83,7 +81,7 @@ def v1_userReset():
 
 @app.route('/api/v1/user/create')
 def v_userCreate():
-    global users
+    users = userList()
     r = { 'error': 'Create User Not Ready' }
     username = request.args.get('user')
     passwd = request.args.get('password')
@@ -99,12 +97,12 @@ def v_userCreate():
         r = {
             'error': 'Missing mandatory fields'
         }
-        return jsonify(r), 403
+        return jsonify(r), 400
     if username in users:
         r = {
             'error': 'Username already exists'
         }
-        return jsonify(r), 402
+        return jsonify(r), 400
     if tel:
         arr = 'user, password, email, phone, newsletter'
         val = "'%s', '%s', '%s', '%s', '%s'" % (username, passwd, mail, tel, newsletter)
@@ -113,13 +111,13 @@ def v_userCreate():
         val = "'%s', '%s', '%s', '%s'" % (username, passwd, mail, newsletter)
     sql = 'INSERT INTO `users` (%s) VALUES(%s)' % (arr, val)
     cursor.execute(sql)
-    # rslt = cursor.fetchall()
-    users = userList()
+    db.commit()
     r = { 'result': '?', 'sql': sql }
-    return jsonify(r)
+    return jsonify(r), 201
 
 @app.route('/api/v1/search')
 def v1_search():
+    users = userList()
     if not auth(request.headers.get('Authorization'), users):
         return jsonify({'Error': '401 Not Authorized'}), 401
     fromTime = request.args.get('from')
