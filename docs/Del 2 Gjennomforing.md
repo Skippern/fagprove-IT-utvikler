@@ -13,3 +13,4 @@ Bygger grunnleggende funksjoner i backend og forbereder å koble den til databas
 Setter opp full integrasjon mot NASA
 Setter opp autentisering med Basic Auth
 Setter opp funksjoner for aa opprette ny bruker
+Setter opp reset av passord med e-post varsel
