@@ -62,7 +62,10 @@ users = userList()
 
 @app.route('/api/v1/username')
 def v1_userExist():
-    r = { 'error': 'No check on existing usernames yet'}
+    test = request.args.get('user')
+    r = { 'available': True }
+    if test in users:
+        r = { 'available': False}
     return jsonify(r)
 
 @app.route('/api/v1/login')
