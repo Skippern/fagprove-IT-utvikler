@@ -10,3 +10,5 @@ Bygger grunnleggende funksjoner i backend og forbereder å koble den til databas
 
 ## Dag 3
 
+Setter opp full integrasjon mot NASA
+Setter opp autentisering med Basic Auth

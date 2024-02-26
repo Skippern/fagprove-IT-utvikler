@@ -1,9 +1,12 @@
 from flask import Flask, jsonify, request
-from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
+from flask_httpauth import HTTPBasicAuth
 import json
 import mysql.connector
+# from mysql.connector import plugins
 
 from lib.getter import *
+from lib.auth import *
 
 try:
     with open('config.json', encoding='utf-8') as file:
@@ -36,12 +39,27 @@ except Exception as e:
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://%s:%s@%s/%s' % (c['db_user'],c['db_passwd'],c['db_site'],c['db'])
-try:
-    dbA = SQLAlchemy(app)
-except Exception as e:
-    print('SQLAlchemy failed')
-    print(e)
-    pass
+# try:
+#     dbA = SQLAlchemy(app)
+# except Exception as e:
+#     print('SQLAlchemy failed')
+#     print(e)
+#     pass
+
+def userList():
+    try:
+        sql = 'SELECT user,password FROM users'
+        cursor.execute(sql)
+        users = cursor.fetchall()
+        print(users)
+    except Exception as e:
+        print(e)
+        print('Failed to get users')
+        pass
+
+userList()
+httpauth = HTTPBasicAuth()
+
 
 @app.route('/api/v1/username')
 def v1_userExist():
@@ -65,6 +83,7 @@ def v_userCreate():
 
 @app.route('/api/v1/search')
 def v1_search():
+    login = auth(db, httpauth)
     fromTime = request.args.get('from')
     toTime = request.args.get('to')
     result = getAstroides(c)

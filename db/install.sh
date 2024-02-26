@@ -13,10 +13,10 @@
 
 
 CREATE DATABASE IF NOT EXISTS nfri;
-CREATE USER 'nfri'@'%' IDENTIFIED WITH mysql_native_password BY 'fagpr0ve';
+CREATE USER IF NOT EXISTS 'nfri'@'%' IDENTIFIED WITH mysql_native_password BY 'fagpr0ve';
 GRANT SELECT,INSERT,UPDATE,DELETE on nfri.* TO 'nfri'@'%';
 FLUSH PRIVILEGES;
-
+use nfri
 CREATE TABLE IF NOT EXISTS `users` (
     `ID` int NOT NULL AUTO_INCREMENT,
     `user` varchar(128) NOT NULL COMMENT 'Username for login',
@@ -27,6 +27,13 @@ CREATE TABLE IF NOT EXISTS `users` (
     PRIMARY KEY (`ID`),
     UNIQUE KEY `userName` (`user`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List of registered users';
-
 INSERT INTO nfri.users (`user`,`password`,`email`) VALUES('NAIF','AstroiderErKule123&','post@naif.no');
 SELECT * FROM nfri.users;
+
+mysql -u root -pfagprove -e "CREATE DATABASE IF NOT EXISTS nfri"
+mysql -u root -pfagprove nfri < /tmp/backend.sql
+# mysql -u root -pfagprove -e "CREATE USER IF NOT EXISTS 'nfri'@'%' IDENTIFIED BY 'fagpr0ve'"
+mysql -u root -pfagprove -e "CREATE USER IF NOT EXISTS 'nfri'@'%' IDENTIFIED WITH mysql_native_password BY 'fagpr0ve'"
+mysql -u root -pfagprove -e "GRANT SELECT,INSERT,UPDATE,DELETE on nfri.* TO 'nfri'@'%'"
+mysql -u root -pfagprove -e "FLUSH PRIVILEGES"
+mysql -u root -pfagprove -e "INSERT INTO nfri.users (`user`,`password`,`email`) VALUES('NAIF','AstroiderErKule123&','post@naif.no')"

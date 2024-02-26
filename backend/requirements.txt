@@ -1,4 +1,6 @@
 flask
-flask_sqlalchemy
-mysql.connector>=2.2.9
+# flask_sqlalchemy
+flask_httpauth
+# mysql.connector>=2.2.9
+mysql-connector-python
 requests

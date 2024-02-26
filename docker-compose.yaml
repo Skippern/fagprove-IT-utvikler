@@ -11,6 +11,7 @@ services:
     build: ./db
     ports:
       - '3306:3306'
+      - '3307:3306'
     volumes_from:
       - data
   backend:
