@@ -83,7 +83,39 @@ def v1_userReset():
 
 @app.route('/api/v1/user/create')
 def v_userCreate():
+    global users
     r = { 'error': 'Create User Not Ready' }
+    username = request.args.get('user')
+    passwd = request.args.get('password')
+    mail = request.args.get('email')
+    tel = request.args.get('phone')
+    newsletter = int(request.args.get('newsletter'))
+    if newsletter == None:
+        newsletter = False
+    newsletter = int(newsletter)
+    newsletter = bool(newsletter)
+    newsletter = int(newsletter)
+    if username == None or passwd == None or mail == None:
+        r = {
+            'error': 'Missing mandatory fields'
+        }
+        return jsonify(r), 403
+    if username in users:
+        r = {
+            'error': 'Username already exists'
+        }
+        return jsonify(r), 402
+    if tel:
+        arr = 'user, password, email, phone, newsletter'
+        val = "'%s', '%s', '%s', '%s', '%s'" % (username, passwd, mail, tel, newsletter)
+    else:
+        arr = 'user, password, email, newsletter'
+        val = "'%s', '%s', '%s', '%s'" % (username, passwd, mail, newsletter)
+    sql = 'INSERT INTO `users` (%s) VALUES(%s)' % (arr, val)
+    cursor.execute(sql)
+    # rslt = cursor.fetchall()
+    users = userList()
+    r = { 'result': '?', 'sql': sql }
     return jsonify(r)
 
 @app.route('/api/v1/search')
