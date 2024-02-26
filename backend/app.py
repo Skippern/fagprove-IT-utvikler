@@ -7,6 +7,7 @@ import datetime
 
 from lib.getter import *
 from lib.auth import *
+from lib.password import *
 
 try:
     with open('config.json', encoding='utf-8') as file:
@@ -103,6 +104,11 @@ def v_userCreate():
             'error': 'Username already exists'
         }
         return jsonify(r), 400
+    if not check_password(passwd):
+        r = {
+            'error': 'Illegal password'
+        }
+        return jsonify(r), 406
     if tel:
         arr = 'user, password, email, phone, newsletter'
         val = "'%s', '%s', '%s', '%s', '%s'" % (username, passwd, mail, tel, newsletter)
@@ -112,7 +118,7 @@ def v_userCreate():
     sql = 'INSERT INTO `users` (%s) VALUES(%s)' % (arr, val)
     cursor.execute(sql)
     db.commit()
-    r = { 'result': '?', 'sql': sql }
+    r = { 'result': 'congratulation, %s' % username }
     return jsonify(r), 201
 
 @app.route('/api/v1/search')

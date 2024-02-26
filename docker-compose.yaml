@@ -1,7 +1,7 @@
 version: '3'
 services:
   data:
-    container_name: myslq_data
+    container_name: mysql_data
     image: mysql:latest
     volumes:
       - /var/lib/mysql
