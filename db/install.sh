@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List of registered users';
 INSERT INTO nfri.users (`user`,`password`,`email`) VALUES('NAIF','AstroiderErKule123&','post@naif.no');
 SELECT * FROM nfri.users;
+SELECT user,plugin FROM mysql.user;
 
 mysql -u root -pfagprove -e "CREATE DATABASE IF NOT EXISTS nfri"
 mysql -u root -pfagprove nfri < /tmp/backend.sql

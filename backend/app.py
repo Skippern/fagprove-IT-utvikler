@@ -1,9 +1,9 @@
 from flask import Flask, jsonify, request
-# from flask_sqlalchemy import SQLAlchemy
-from flask_httpauth import HTTPBasicAuth
+# from flask_httpauth import HTTPBasicAuth
 import json
 import mysql.connector
-# from mysql.connector import plugins
+# import time
+import datetime
 
 from lib.getter import *
 from lib.auth import *
@@ -37,29 +37,28 @@ except Exception as e:
     print(e)
     # exit(4)
 
+global users
+
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://%s:%s@%s/%s' % (c['db_user'],c['db_passwd'],c['db_site'],c['db'])
-# try:
-#     dbA = SQLAlchemy(app)
-# except Exception as e:
-#     print('SQLAlchemy failed')
-#     print(e)
-#     pass
 
 def userList():
+    u = {}
     try:
         sql = 'SELECT user,password FROM users'
         cursor.execute(sql)
-        users = cursor.fetchall()
-        print(users)
+        rslt = cursor.fetchall()
+        for x in rslt:
+            u[x[0]] = x[1]
+        print(u)
+        return u
     except Exception as e:
         print(e)
         print('Failed to get users')
-        pass
+        return {}
+        # pass
 
-userList()
-httpauth = HTTPBasicAuth()
-
+users = userList()
+# httpauth = HTTPBasicAuth()
 
 @app.route('/api/v1/username')
 def v1_userExist():
@@ -68,7 +67,10 @@ def v1_userExist():
 
 @app.route('/api/v1/login')
 def v1_login():
-    r = { 'error': 'Login Not Ready' }
+    global users
+    print(users)
+    login = auth(request.headers.get('Authorization'), users)
+    r = { 'login': login }
     return jsonify(r)
 
 @app.route('/api/v1/user/reset')
@@ -83,9 +85,17 @@ def v_userCreate():
 
 @app.route('/api/v1/search')
 def v1_search():
-    login = auth(db, httpauth)
+    if not auth(request.headers.get('Authorization'), users):
+        return jsonify({'Error': '401 Not Authorized'}), 401
     fromTime = request.args.get('from')
     toTime = request.args.get('to')
+    datefmt = "%Y-%m-%d"
+    if fromTime:
+        fromTime = int(fromTime)/1000
+        fromTime = datetime.datetime.utcfromtimestamp(fromTime).strftime(datefmt)
+    if toTime:
+        toTime = int(toTime)/1000
+        toTime = datetime.datetime.utcfromtimestamp(toTime).strftime(datefmt)
     result = getAstroides(c)
     r = {
         'from': fromTime,
