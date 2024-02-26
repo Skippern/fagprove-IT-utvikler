@@ -1,3 +1,4 @@
 flask
 flask_sqlalchemy
 mysql.connector>=2.2.9
+requests

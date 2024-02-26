@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 import mysql.connector
 
+from lib.getter import *
+
 try:
     with open('config.json', encoding='utf-8') as file:
         c = json.load(file)
@@ -41,6 +43,11 @@ except Exception as e:
     print(e)
     pass
 
+@app.route('/api/v1/username')
+def v1_userExist():
+    r = { 'error': 'No check on existing usernames yet'}
+    return jsonify(r)
+
 @app.route('/api/v1/login')
 def v1_login():
     r = { 'error': 'Login Not Ready' }
@@ -60,7 +67,7 @@ def v_userCreate():
 def v1_search():
     fromTime = request.args.get('from')
     toTime = request.args.get('to')
-    result = []
+    result = getAstroides(c)
     r = {
         'from': fromTime,
         'to': toTime,

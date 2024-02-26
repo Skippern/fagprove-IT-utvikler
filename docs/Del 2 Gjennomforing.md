@@ -7,3 +7,6 @@ Oppstartsmøte, planlegging. Fikk på plass `docker-compose.yaml` og `Dockerfile
 ## Dag 2
 
 Bygger grunnleggende funksjoner i backend og forbereder å koble den til databasen. Satt opp brukere i database
+
+## Dag 3
+
