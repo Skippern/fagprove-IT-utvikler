@@ -1,20 +1,23 @@
 interface Props {
     startDate: number;
-    setStartDate: React.Dispatch<React.SetStateAction<number>>;
     endDate: number;
+    searchTrigger: boolean;
+    setStartDate: React.Dispatch<React.SetStateAction<number>>;
     setEndDate: React.Dispatch<React.SetStateAction<number>>;
+    setSearchTrigger: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function DashTop({startDate,endDate,setStartDate,setEndDate}: Props) {
+export default function DashTop({startDate,endDate,searchTrigger,setStartDate,setEndDate,setSearchTrigger}: Props) {
+
     function dateToUnixTime(dateString: string): number | null {
         const date = new Date(dateString);
         if (isNaN(date.getTime())) {
             return null;
         }
-        return Math.floor(date.getTime() / 1000)
+        return Math.floor(date.getTime())
     }
     function unixTimeToDate(unixTime: number): string {
-        const date = new Date(unixTime * 1000);
+        const date = new Date(unixTime);
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const day = String(date.getDate()).padStart(2,'0');
@@ -22,7 +25,6 @@ export default function DashTop({startDate,endDate,setStartDate,setEndDate}: Pro
     }
     const handleInputStartChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         console.log(event.target.value)
-        // const value = parseInt(event.target.value);
         const value = dateToUnixTime(event.target.value)
         console.log(value)
         if (value !== null) {
@@ -33,7 +35,6 @@ export default function DashTop({startDate,endDate,setStartDate,setEndDate}: Pro
     }
     const handleInputEndChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         console.log(event.target.value)
-        // const value = parseInt(event.target.value);
         const value = dateToUnixTime(event.target.value)
         console.log(value)
         if (value !== null) {
@@ -42,13 +43,17 @@ export default function DashTop({startDate,endDate,setStartDate,setEndDate}: Pro
             setEndDate(0)
         }
     }
+    const flipSearchTrigger = () => {
+        console.log('button pushed')
+        setSearchTrigger(!searchTrigger)
+    }
 
     return (
         <div className="dashboard-top">
             <div>
                 <label title="Dato Start">Start Dato <input name="startDate"  value={startDate === 0 ? '' : unixTimeToDate(startDate)} type="date" placeholder="Dato start" onChange={handleInputStartChange}/></label>
                 <label title="Dato Slutt">Slutt Dato <input name="endDate"  value={endDate === 0 ? '' : unixTimeToDate(endDate)} type="date" placeholder="Dato slutt" onChange={handleInputEndChange}/></label>
-                <button>S&Oslash;K</button>
+                <button onClick={flipSearchTrigger}>S&Oslash;K</button>
             </div>
             <div>
                 <button>Logg Ut</button>

@@ -5,3 +5,5 @@ Tenkte i begynnelsen å cache data fra NASA i lokal database, men slo fra meg de
 Det er bare to API-funksjoner som bruker BasicAuth, det er `/api/v1/login` og `/api/v1/search`. Andre funksjoner kontrollerer om data er tillatt mot database uten autentisering.
 
 Backend er skrevet for å ta data med HTTP GET kall, selv om jeg ville brukt HTTP POST for å opprette ny bruker. Dette vil jeg rette på hvis jeg har tid mot slutten.
+
+Oppdaget da jeg begynte å jobbe med frontend at jeg trengte CORS støtte i backend, og la til dette.

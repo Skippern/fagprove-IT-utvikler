@@ -14,3 +14,9 @@ Setter opp full integrasjon mot NASA
 Setter opp autentisering med Basic Auth
 Setter opp funksjoner for aa opprette ny bruker
 Setter opp reset av passord med e-post varsel
+
+## Dag 4
+
+Satte opp et enkelt bibliotek, gjorde noen raske tester på det
+Begynte oppsett med frontend, klargjør integrasjonen mot backend med dummy data
+Oppdaget at jeg måtte legge til CORS støtte i backend og la til dette (3 linjer kode i Flask)

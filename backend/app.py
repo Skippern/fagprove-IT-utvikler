@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_mail import Mail, Message
+from flask_cors import CORS
 # from flask_httpauth import HTTPBasicAuth
 import json
 import mysql.connector
@@ -52,6 +53,7 @@ app.config['MAIL_USE_TLS'] = c['mail-use-tls']
 app.config['MAIL_USERNAME'] = c['mail-username']
 app.config['MAIL_PASSWORD'] = c['mail-password']
 mailer = Mail(app)
+CORS(app)
 
 def userList():
     u = {}
