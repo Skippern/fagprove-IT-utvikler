@@ -1,5 +1,9 @@
 export default function LoginMenu() {
     return (
-        <p>Login</p>
+        <div>
+            <div>Top - Logo her</div>
+            <div>Velkomst-tekst</div>
+            <div>Login-box</div>
+        </div>
     )
 }

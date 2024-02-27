@@ -1,5 +1,9 @@
 export default function RegisterMenu() {
     return (
-        <p>Register</p>
+        <div>
+            <div>Top - Logo her</div>
+            <div>Registrer deg!</div>
+            <div>Registreringsbox</div>
+        </div>
     )
 }
