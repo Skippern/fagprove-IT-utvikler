@@ -14,11 +14,15 @@ code {
 
 .login-grid {
   display: grid;
-  grid-template-columns: 95vw;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 100vh;
 }
 .login-grid-image {
   border: 1px;
   flex: 3;
+}
+.login-grid-image img {
+  width: 75vh;
 }
 .login-grid-menu {
   border: 1px;
