@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     PRIMARY KEY (`ID`),
     UNIQUE KEY `userName` (`user`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='List of registered users';
-INSERT INTO nfri.users (`user`,`password`,`email`) VALUES('NAIF','AstroiderErKule123&','post@naif.no');
+INSERT INTO nfri.users (`user`,`password`,`email`) VALUES('NAIF','AstroiderErKule123&','post@naif.no'),('NFRI','Astroidesoek24!','post@nfri.no');
 SELECT * FROM nfri.users;
 SELECT user,plugin FROM mysql.user;
 

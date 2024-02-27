@@ -5,7 +5,6 @@ interface Credentials {
 }
 interface EndPoint {
     url: string;
-    // port: number | null;
 }
 
 
@@ -14,7 +13,6 @@ class NfriApi {
     private static endPoint: EndPoint | null = null;
     private static headers = new Headers();
     static setCredentials(myCredentials: Credentials): void {
-        // test credentials, give error
         this.credentials = myCredentials
         this.headers.append('Authorization', 'Basic ' + btoa(`${this.credentials.user}:${this.credentials.password}`))
     }
@@ -33,7 +31,6 @@ class NfriApi {
                 }
                 return response.json();
             })
-            // Do something
         } else {
             // Not logged in
             if (!this.credentials) {
@@ -41,12 +38,10 @@ class NfriApi {
             }
             // Missing endpoint
             if (!this.endPoint) {
-                throw new Error('Missing endpoint. Set with NfriApi.setEndpoint({url:\'https://example.com/api/v1/search\'})')
+                throw new Error('Missing endpoint. Set with NfriApi.setEndpoint({url:\'https://example.com:4000/api/v1/search\'})')
             }
         }
-        return
     }
-    // return
 }
 
 export default NfriApi;
