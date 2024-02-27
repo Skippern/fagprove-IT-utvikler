@@ -67,7 +67,7 @@ export default function Dashboard() {
     return (
         <div className="dashboard">
             <DashTop startDate={startDate} endDate={endDate} searchTrigger={searchTrigger} setStartDate={setStartDate} setEndDate={setEndDate} setSearchTrigger={setSearchTrigger}/>
-            {neo ? <DashContent/> : <DashBlank/>}
+            {neo ? <DashContent neo={neo}/> : <DashBlank/>}
             <div className="dashboard-footer"><br/>Levert av NFRI</div>
         </div>
     )
