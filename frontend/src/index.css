@@ -11,3 +11,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.login-grid {
+  display: grid;
+  grid-template-columns: 95vw;
+}
+.login-grid-image {
+  border: 1px;
+  flex: 3;
+}
+.login-grid-menu {
+  border: 1px;
+  padding: 10px;
+  flex: 1;
+}
+
+.dashboard {
+  background-color: black;
+  color: bisque;
+}
+.dashboard-top {
+  align-items: center;
+}
+.dashboard-content {
+  align-items: center;
+}
+.dashboard-footer {
+  align-items: center;
+}

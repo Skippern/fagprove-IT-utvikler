@@ -12,7 +12,7 @@ import reportWebVitals from './reportWebVitals';
 
 import ErrorPage from './c/ErrorPage';
 import Login from './c/Login';
-import Register from './c/register';
+import Register from './c/Register';
 import Dashboard from './c/Dashboard';
 
 const router = createBrowserRouter(
