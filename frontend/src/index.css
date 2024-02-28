@@ -44,11 +44,40 @@ code {
   align-items: center;
   height: 10vh;
 }
+.dashboard-blank {
+  align-items: center;
+  vertical-align: middle;
+  text-align: center;
+  height: 80vh;
+  border: 1px solid white;
+  align-self: center;
+}
+.dashboard-content-thing {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100vh;
+
+}
 .dashboard-content {
   align-items: center;
   border: 1px solid wheat;
   width: 95vw;
   height: 85vh;
+}
+.dashboard-filter {
+  border: 1px solid pink;
+  height: 5vh;
+  width: 90vw;
+}
+.dashboard-bars {
+  border: 1px solid yellow;
+  height: 40vh;
+  width: 45vw;
+}
+.dashboard-scatter {
+  border: 1px solid green;
+  height: 40vh;
+  width: 45vw;
 }
 .dashboard-footer {
   align-items: center;
@@ -57,6 +86,8 @@ code {
 
 .dashboard-table {
   width: 95vw;
+  height: 200px;
+  overflow: auto;
   align-items: center;
 }
 .astroide-tabell {
@@ -65,6 +96,6 @@ code {
   padding: 2px;
   text-align: center;
   overflow: scroll;
-  width: 94vw;
+  width: 90vw;
   height: 20vh;
 }

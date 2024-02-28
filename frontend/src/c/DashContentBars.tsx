@@ -4,6 +4,6 @@ interface Props {
 
 export default function DashContentBars({neo}: Props) {
     return (
-        <div>Bar Diagram</div>
+        <div className="dashboard-bars">Bar Diagram</div>
     )
 }

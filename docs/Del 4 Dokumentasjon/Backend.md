@@ -5,3 +5,5 @@ Backend er satt opp med Python Flask med et par tilleggsbiblioteker for funskjon
 Det er satt opp ett par flere funksjoner som alle handler om bruker-håndtering.
 
 Backend er eksponert på port `5000`. Dette skal være tilgjengelig for biblioteket som leveres med oppgaven.
+
+Backend er ikke satt opp med SSL for fagprøven, siden dette krever sertifikater, og basert på utsteder kan det kreves at server har kvalifisert domenenavn.

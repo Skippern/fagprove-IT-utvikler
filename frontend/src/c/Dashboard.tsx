@@ -3,6 +3,7 @@ import React, {useState, useEffect } from 'react';
 import DashTop from "./DashTop";
 import DashContent from './DashContent';
 import DashBlank from './DashBlank';
+// import { atob } from 'buffer';
 
 export default function Dashboard() {
     const [startDate, setStartDate] = useState<number>(0)
@@ -13,7 +14,9 @@ export default function Dashboard() {
     const [api, setApi] = useState<string>('http://localhost:5000/api/v1')
 
     async function fetchNeo() {
-        // setApi(config.endpoint)
+        if (endDate === 0 && startDate === 0) {
+            return
+        }
         const user = 'NAIF'
         const passwd = 'AstroiderErKule123&'
         const myHeader = {
@@ -26,9 +29,6 @@ export default function Dashboard() {
         }
         if (endDate > 0) {
             url = url + 'to='+endDate.toString()
-        }
-        if (endDate === 0 && startDate === 0) {
-            return
         }
         console.log(url);
         const result = await fetch(url, {method: "GET", headers: myHeader});
@@ -58,10 +58,11 @@ export default function Dashboard() {
     }, [])
     useEffect(() => {
         if (config && config.endpoint) {
-            // Hva i h?
-            console.log(config.endpoint)
-            // setApi(config.endpoint)
-            // setApi(btoa(config.endpoint))
+            try {
+            setApi(config.endpoint)
+            } catch (error) {
+                console.log('Could not set API endpoint')
+            }
         }
     }, [config])
     return (
