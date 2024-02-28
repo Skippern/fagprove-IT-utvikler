@@ -65,6 +65,8 @@ code {
   height: 85vh;
 }
 .dashboard-filter {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   border: 1px solid pink;
   height: 5vh;
   width: 90vw;

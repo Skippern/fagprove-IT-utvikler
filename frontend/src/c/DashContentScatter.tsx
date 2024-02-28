@@ -7,40 +7,37 @@ import { Scatter } from 'react-chartjs-2'
 // }
 
 interface Props {
-    data: any;
+    neo: any;
 }
 
-export default function DashControlScatter({data}: Props) {
-    const myData: any = [
-        {x: 1, y: 3 }
-    ]
+export default function DashControlScatter({neo}: Props) {
     const chartData = {
         datasets: [
             {
                 label: 'scatter',
-                data: myData
+                data: neo
             }
         ]
     }
     return(
         <div className="dashboard-scatter">
-            <Scatter
+            {/* <Scatter
                 id='astroid-scatter-diagram'
                 // type='scatter'
                 data={chartData}
-                options={{
-                    scales: {
-                        x: {
-                            // type: 'linear',
-                            position: 'bottom'
-                        },
-                        y: {
-                            // type: 'linear',
-                            position: 'left'
-                        },
-                    },
-                }} 
-            />
+                // options={{
+                //     scales: {
+                //         x: {
+                //             // type: 'linear',
+                //             position: 'bottom'
+                //         },
+                //         y: {
+                //             // type: 'linear',
+                //             position: 'left'
+                //         },
+                //     },
+                // }} 
+            /> */}
         </div>
     )
 }

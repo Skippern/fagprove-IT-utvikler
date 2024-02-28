@@ -1,3 +1,4 @@
+// import Headers from 'node'
 
 interface Credentials {
     user: string;
@@ -11,7 +12,7 @@ interface EndPoint {
 class NfriApi {
     private static credentials: Credentials | null = null;
     private static endPoint: EndPoint | null = null;
-    private static headers = new Headers();
+    private static headers: Headers = new Headers();
     static setCredentials(myCredentials: Credentials): void {
         this.credentials = myCredentials
         this.headers.append('Authorization', 'Basic ' + btoa(`${this.credentials.user}:${this.credentials.password}`))
@@ -19,7 +20,7 @@ class NfriApi {
     static setEndpoint(myEndPoint: EndPoint): void {
         this.endPoint = myEndPoint
     }
-    static getAstroids(tidStart:number,tidSlutt:number): any {
+    static getAsteroids(tidStart:number,tidSlutt:number): any {
         if (this.credentials && this.endPoint) {
             fetch(this.endPoint.url, {
                 method: 'GET',

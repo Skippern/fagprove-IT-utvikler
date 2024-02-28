@@ -1,9 +1,40 @@
+import React from 'react'
+import { Bar } from 'react-chartjs-2'
+
 interface Props {
     neo: any;
 }
 
-export default function DashContentBars({neo}: Props) {
+const DashContentBars: React.FC<Props> = ({neo}) => {
+    // const chartData = {
+    //     labels: neo.labels,
+    //     datasets: [
+    //         {
+    //             label: 'Values',
+    //             data: neo.values,
+    //             borderWidth: 1
+    //         }
+    //     ]
+    // }
     return (
-        <div className="dashboard-bars">Bar Diagram</div>
+        <div className="dashboard-bars">
+            {/* <Bar
+                // type='bar'
+                data={chartData}
+                // options={{
+                //     scales: {
+                //         // yAxes: [
+                //         //     {
+                //         //         ticks: {
+                //         //             beginAtZero: true,
+                //         //         },
+                //         //     },
+                //         // ],
+                //     },
+                // }}
+            /> */}
+        </div>
     )
 }
+
+export default DashContentBars;
