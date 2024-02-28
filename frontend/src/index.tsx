@@ -4,7 +4,8 @@ import {
   RouterProvider,
   Route,
   createBrowserRouter,
-  createRoutesFromElements
+  createRoutesFromElements,
+  redirect
 } from "react-router-dom";
 import './index.css';
 // import App from './App';
@@ -20,9 +21,11 @@ const router = createBrowserRouter(
     <Route
       path={'/'}
       errorElement={<ErrorPage/>} >
+        <Route path={'/'} loader={ () => {return redirect('/login')}} />
         <Route path={'/login'} element={<Login/>}/>
         <Route path={'/register'} element={<Register/>}/>
         <Route path={'/dashboard'} element={<Dashboard/>}/>
+        <Route path={'/forgotten'} element={<div>Nothing</div>} />
       </Route>
   )
 )

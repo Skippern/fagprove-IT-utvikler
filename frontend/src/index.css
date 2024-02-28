@@ -28,9 +28,10 @@ code {
   vertical-align: middle;
 }
 .login-grid-image img {
-  width: 100vw;
+  width: 90vw;
 }
 .login-grid-menu {
+  width: 10vh;
   border: 1px;
   padding: 10px;
   flex: 1;
@@ -41,6 +42,8 @@ code {
   color: bisque;
 }
 .dashboard-top {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
   align-items: center;
   height: 10vh;
 }

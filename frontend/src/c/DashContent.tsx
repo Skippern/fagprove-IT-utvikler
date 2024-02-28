@@ -108,10 +108,10 @@ export default function DashContent({neo}: Props) {
     return (
         <div className="dashboard-content">
             <DashContentFilter size={filterSize} minSpeed={filterMinSpeed} maxSpeed={filterMaxSpeed} dangerous={filterDangerous} range={filterRange} setSize={setFilterSize} setMinSpeed={setFilterMinSpeed} setMaxSpeed={setFilterMaxSpeed} setDangerous={setFilterDangerous} setRange={setFilterRange}/>
-            <DashContentTable neo={neoFiltered}/>
+            { neoFiltered ? <DashContentTable neo={neoFiltered}/> : null }
             <div className='dashboard-content-thing'>
-                <DashContentBars neo={barData}/>
-                <DashControlScatter neo={scatterData}/>
+                { barData ? <DashContentBars neo={barData}/> : null }
+                { scatterData ? <DashControlScatter neo={scatterData}/> : null }
             </div>
         </div>
     )

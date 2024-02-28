@@ -6,16 +6,16 @@ interface Props {
 }
 
 const DashContentBars: React.FC<Props> = ({neo}) => {
-    // const chartData = {
-    //     labels: neo.labels,
-    //     datasets: [
-    //         {
-    //             label: 'Values',
-    //             data: neo.values,
-    //             borderWidth: 1
-    //         }
-    //     ]
-    // }
+    const chartData = {
+        labels: neo.labels,
+        datasets: [
+            {
+                label: 'Values',
+                data: neo.values,
+                borderWidth: 1
+            }
+        ]
+    }
     return (
         <div className="dashboard-bars">
             {/* <Bar
