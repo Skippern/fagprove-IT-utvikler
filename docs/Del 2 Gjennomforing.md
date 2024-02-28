@@ -20,3 +20,8 @@ Setter opp reset av passord med e-post varsel
 Satte opp et enkelt bibliotek, gjorde noen raske tester på det
 Begynte oppsett med frontend, klargjør integrasjonen mot backend med dummy data
 Oppdaget at jeg måtte legge til CORS støtte i backend og la til dette (3 linjer kode i Flask)
+
+## Dag 5
+
+Full fokus på frontend, delt siden inn i felt hvor hvert felt er eget React.TS objekt.
+

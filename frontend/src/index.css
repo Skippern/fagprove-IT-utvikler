@@ -54,3 +54,17 @@ code {
   align-items: center;
   text-align: center;
 }
+
+.dashboard-table {
+  width: 95vw;
+  align-items: center;
+}
+.astroide-tabell {
+  align-self: center;
+  border: 1px solid red;
+  padding: 2px;
+  text-align: center;
+  overflow: scroll;
+  width: 94vw;
+  height: 20vh;
+}

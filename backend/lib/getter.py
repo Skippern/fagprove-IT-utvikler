@@ -58,6 +58,11 @@ def getAstroides(c, startDate = None, endDate = None):
                         print(e)
                         pass
                         # raise e
+                    try:
+                        tmp['orbiting'] = cpa['orbiting_body']
+                    except Exception as e:
+                        print(e)
+                        pass
                 
                 findings.append(tmp)
     return findings
