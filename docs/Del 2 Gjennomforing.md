@@ -25,3 +25,8 @@ Oppdaget at jeg måtte legge til CORS støtte i backend og la til dette (3 linje
 
 Full fokus på frontend, delt siden inn i felt hvor hvert felt er eget React.TS objekt.
 
+## Dag 6
+
+Fullføre de siste punktene i frontend
+
+## Dag 7

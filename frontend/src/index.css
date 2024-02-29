@@ -13,6 +13,10 @@ a {
   color: bisque;
 }
 
+.bar {
+  background-color: aqua;
+}
+
 .image-attr {
   font-size: smaller;
   text-align: right;
@@ -90,6 +94,7 @@ code {
   border: 1px solid yellow;
   height: 40vh;
   width: 45vw;
+  font-size: x-small;
 }
 .dashboard-scatter {
   border: 1px solid green;

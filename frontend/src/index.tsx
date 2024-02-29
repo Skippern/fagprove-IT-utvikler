@@ -16,6 +16,7 @@ import Login from './c/Login';
 import Register from './c/Register';
 import Dashboard from './c/Dashboard';
 import GDPR from './c/GDPR';
+import Reset from './c/Reset';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,7 +27,7 @@ const router = createBrowserRouter(
         <Route path={'/login'} element={<Login/>}/>
         <Route path={'/register'} element={<Register/>}/>
         <Route path={'/dashboard'} element={<Dashboard/>}/>
-        <Route path={'/reset'} element={<div>Nothing</div>} />
+        <Route path={'/reset'} element={<Reset/>} />
         <Route path={'/GDPR'} element={<GDPR/>} />
       </Route>
   )

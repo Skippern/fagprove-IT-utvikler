@@ -1,74 +1,27 @@
-import React, { useRef } from 'react';
-// declare module "https://cdnjs.cloudflare.com/ajax/libs/Char.js/2.9.4/Chart.js" {
-//     export * from 'Chart'
-// }
-import { Bar } from 'react-chartjs-2';
-// import "charts.js/auto";
-import type { ChartData, ChartOptions } from 'chart.js'
+import React from 'react';
+
 interface Props {
     neo: any;
 }
-// interface BarProps {
-//     options: any;
-//     data: any;
-//     datasets: any;
-// }
 
 const DashContentBars: React.FC<Props> = ({neo}) => {
-    const barRef = useRef(null)
-    // const xValues = neo.labels;
-    // const yValues = neo.values;
-    // const barChart = new Chart('NAIF-bar', {
-    //     // type: "bar",
-    //     data: {
-    //         labels: {xValues},
-    //         datasets: [{
-    //             data: {yValues}
-    //         }]
-    //     }
-    // })
-    // const barChartData: BarProps = {
-    //     options: null,
-    //     data: neo.values,
-    //     datasets: null
-    // }
-    const barChartData = {
-        labels: neo.labels,
-        datasets: [
-            {
-                label: 'label',
-                data: neo.values,
-                borderWidth: 1,
-                backgroundColor: [
-                    'white', 'yellow', 'green', 'red'
-                ]
-            }
-        ]
+    let tdElements: JSX.Element[] = [];
+    for (let i = 0; i < 100; i++) {
+        tdElements.push(<td key={i}>&nbsp;</td>)
     }
-    var astbar = document.getElementById('astroide-bar')
-    // var ctx = astbar.
-    // var myChart = new Chart(grapharea)
-    // myChart.destroy()
-    // grapharea.destroy()
     return (
         <div className="dashboard-bars">
-            <canvas id='astroide-bar'></canvas>
-            {/* {barChartData ? <Bar
-                id='astroide-bar'
-                ref={barRef}
-                data={barChartData}
-                options={{
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Noe her'
-                        },
-                        legend: {
-                            display: false
-                        }
-                    }
-                }}
-            /> : null } */}
+            <table>
+                <thead>
+                    <tr><td>St&oslash;rrelse</td>{tdElements}</tr>
+                </thead>
+                <tbody>
+                    <tr><td>Store</td><td className='bar' colSpan={neo.values[3]}>&nbsp;</td><td colSpan={100-neo.values[3]}>{neo.values[3]}</td></tr>
+                    <tr><td>Mellomstore</td><td className='bar' colSpan={neo.values[2]}>&nbsp;</td><td colSpan={100-neo.values[2]}>{neo.values[2]}</td></tr>
+                    <tr><td>Sm&aring;</td><td className='bar' colSpan={neo.values[1]}>&nbsp;</td><td colSpan={100-neo.values[1]}>{neo.values[1]}</td></tr>
+                    <tr><td>Veldig sm&aring;</td><td className='bar' colSpan={neo.values[0]}>&nbsp;</td><td colSpan={100-neo.values[0]}>{neo.values[0]}</td></tr>
+                </tbody>
+            </table>
         </div>
     )
 }
