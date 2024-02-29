@@ -71,7 +71,7 @@ code {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   border: 1px solid pink;
-  height: 5vh;
+  height: 10vh;
   width: 90vw;
 }
 .dashboard-bars {

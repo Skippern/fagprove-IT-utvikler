@@ -14,14 +14,14 @@ export default function DashControlScatter({neo}: Props) {
     const chartData = {
         datasets: [
             {
-                label: 'scatter',
+                // label: 'scatter',
                 data: neo
             }
         ]
     }
     return(
         <div className="dashboard-scatter">
-            {/* <Scatter
+            <Scatter
                 id='astroid-scatter-diagram'
                 // type='scatter'
                 data={chartData}
@@ -37,7 +37,7 @@ export default function DashControlScatter({neo}: Props) {
                 //         },
                 //     },
                 // }} 
-            /> */}
+            />
         </div>
     )
 }
