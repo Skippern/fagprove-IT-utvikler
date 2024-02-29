@@ -3,7 +3,6 @@ import React, {useState, useEffect } from 'react';
 import DashTop from "./DashTop";
 import DashContent from './DashContent';
 import DashBlank from './DashBlank';
-// import { atob } from 'buffer';
 
 export default function Dashboard() {
     const [startDate, setStartDate] = useState<number>(0)
@@ -12,13 +11,28 @@ export default function Dashboard() {
     const [neo, setNeo] = useState<any>()
     const [config, setConfig] = useState<any>()
     const [api, setApi] = useState<string>('http://localhost:5000/api/v1')
+    const [user, setUser] = useState<string>()
+    const [passwd, setPasswd] = useState<string>()
+
+        const handleGetCookie = () => {
+            const cookies = document.cookie.split('; ');
+            const myCookie1 = cookies.find(cookie => cookie.startsWith('NFRIusername='));
+            const myCookie2 = cookies.find(cookie => cookie.startsWith('NFRIpass='))
+            if (myCookie1) {
+                setUser(myCookie1.split('=')[1])
+            }
+            if (myCookie2) {
+                setPasswd(myCookie2.split('=')[1])
+            }
+        }  
 
     async function fetchNeo() {
         if (endDate === 0 && startDate === 0) {
             return
         }
-        const user = 'NAIF'
-        const passwd = 'AstroiderErKule123&'
+        handleGetCookie();
+        // const user = 'NAIF'
+        // const passwd = 'AstroiderErKule123&'
         const myHeader = {
             Accept: '*/*',
             Authorization: 'Basic '+ btoa(`${user}:${passwd}`),

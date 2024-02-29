@@ -81,9 +81,6 @@ export default function DashContent({neo}: Props) {
                 {x: neo[key]['diameter'], y: neo[key]['velocity']}
             ]
         })
-        // newScatter.add({x: 1, y: 2})
-        // console.log('newBar: ',newBar)
-        // console.log('newScatter: ',newScatter)
         setBarData(newBar)
         if (newScatter.length === 0) {
             setScatterData(null)
@@ -96,12 +93,6 @@ export default function DashContent({neo}: Props) {
         updateCharts();
     }, [neo])
     useEffect(() => {
-        // console.log('Filter updated')
-        // console.log('Size: ', filterSize)
-        // console.log('Danger: ', filterDangerous)
-        // console.log('MinSpeed: ',filterMinSpeed)
-        // console.log('MaxSpeed: ',filterMaxSpeed)
-        // console.log('Range: ',filterRange)
         updateFilter();
     }, [neo,filterSize,filterDangerous,filterMaxSpeed,filterMinSpeed,filterRange])
 
