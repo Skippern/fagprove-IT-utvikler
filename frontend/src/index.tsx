@@ -26,6 +26,7 @@ const router = createBrowserRouter(
         <Route path={'/register'} element={<Register/>}/>
         <Route path={'/dashboard'} element={<Dashboard/>}/>
         <Route path={'/forgotten'} element={<div>Nothing</div>} />
+        <Route path={'/GDPR'} element={<div>Side om GDPR og brukerbetingelser</div>} />
       </Route>
   )
 )

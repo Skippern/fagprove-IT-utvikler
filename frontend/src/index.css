@@ -9,6 +9,10 @@ body {
   color: bisque;
 }
 
+a {
+  color: bisque;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

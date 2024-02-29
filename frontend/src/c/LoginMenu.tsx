@@ -27,24 +27,11 @@ export default function LoginMenu() {
         if (result.status === 200) {
             document.cookie = `NFRIusername=${username}`;
             document.cookie = `NFRIpass=${password}; max-age=604800`;
-            // alert('Du er logget inn!') 
             nav('/dashboard')   
         } else {
             alert('Feil i brukernavn og passord')
         }
     }
-    // const handleGetCookie = () => {
-    //     const cookies = document.cookie.split('; ');
-    //     const myCookie1 = cookies.find(cookie => cookie.startsWith('NFRIusername='));
-    //     const myCookie2 = cookies.find(cookie => cookie.startsWith('NFRIpass='))
-    //     if (myCookie1) {
-    //         const nUsername = myCookie1.split('=')[1]
-    //     }
-    //     if (myCookie2) {
-    //         const nPassword = myCookie2.split('=')[1]
-    //     }
-    // }
-
     useEffect(() => {
         const fetchConfig = async () => {
             try {
@@ -69,7 +56,7 @@ export default function LoginMenu() {
     }, [config])
     return (
         <div>
-            <div>Top - Logo her</div>
+            <div><img src='img/logo.png' alt='Logo'/></div>
             <div>Velkommen eller noe s&aring;nt</div>
             <div>
                 {/* <form method=''> */}

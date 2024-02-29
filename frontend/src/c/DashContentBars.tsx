@@ -1,8 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useRef } from 'react';
 // declare module "https://cdnjs.cloudflare.com/ajax/libs/Char.js/2.9.4/Chart.js" {
 //     export * from 'Chart'
 // }
-import { Bar } from 'react-chartjs-2'
+import { Bar } from 'react-chartjs-2';
+// import "charts.js/auto";
 import type { ChartData, ChartOptions } from 'chart.js'
 interface Props {
     neo: any;
@@ -44,10 +45,16 @@ const DashContentBars: React.FC<Props> = ({neo}) => {
             }
         ]
     }
+    var astbar = document.getElementById('astroide-bar')
+    // var ctx = astbar.
+    // var myChart = new Chart(grapharea)
+    // myChart.destroy()
+    // grapharea.destroy()
     return (
         <div className="dashboard-bars">
-
-            {barChartData ? <Bar
+            <canvas id='astroide-bar'></canvas>
+            {/* {barChartData ? <Bar
+                id='astroide-bar'
                 ref={barRef}
                 data={barChartData}
                 options={{
@@ -61,7 +68,7 @@ const DashContentBars: React.FC<Props> = ({neo}) => {
                         }
                     }
                 }}
-            /> : null }
+            /> : null } */}
         </div>
     )
 }

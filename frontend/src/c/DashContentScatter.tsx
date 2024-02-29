@@ -21,7 +21,7 @@ export default function DashControlScatter({neo}: Props) {
     }
     return(
         <div className="dashboard-scatter">
-            <Scatter
+            {/* <Scatter
                 id='astroid-scatter-diagram'
                 // type='scatter'
                 data={chartData}
@@ -37,7 +37,7 @@ export default function DashControlScatter({neo}: Props) {
                 //         },
                 //     },
                 // }} 
-            />
+            /> */}
         </div>
     )
 }
