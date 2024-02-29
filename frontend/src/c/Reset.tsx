@@ -1,11 +1,11 @@
 import LoginImage from "./LoginImage";
-import LoginMenu from "./LoginMenu";
+import ResetMenu from "./ResetMenu";
 
-export default function Login() {
+export default function Reset() {
     return (
         <div className="login-grid">
             <LoginImage/>
-            <div className="login-grid-menu"><LoginMenu/></div>
+            <div className="login-grid-menu"><ResetMenu/></div>
         </div>
     )
 }

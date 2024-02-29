@@ -56,7 +56,7 @@ export default function LoginMenu() {
     }, [config])
     return (
         <div>
-            <div><img src='img/logo.png' alt='Logo'/></div>
+            <div><img className='logo-img' src='img/logo.png' alt='Logo'/></div>
             <div>Velkommen eller noe s&aring;nt</div>
             <div>
                 {/* <form method=''> */}
@@ -67,7 +67,7 @@ export default function LoginMenu() {
                 {/* </form> */}
             </div>
             <div>
-                <Link to='/forgotten'>Glemt passord?</Link>
+                <Link to='/reset'>Glemt passord?</Link>
             </div><div>
                 <Link to='/register'>Ikke registrert?</Link>
             </div>

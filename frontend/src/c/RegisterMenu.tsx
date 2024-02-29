@@ -147,7 +147,7 @@ export default function RegisterMenu() {
     }, [username,password,acceptGDPR,email])
     return (
         <div>
-            <div><Link to='/login'><button>&lt;</button></Link><img src='img/logo.png' alt='Logo'/></div>
+            <div><Link to='/login'><button>&lt;</button></Link><img className='logo-img' src='img/logo.png' alt='Logo'/></div>
             <div>Registrer deg!</div>
             <div>
                 <input name='username' placeholder='Brukernavn' value={username} onChange={handleUsernameChange}/>
