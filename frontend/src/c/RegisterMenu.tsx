@@ -14,12 +14,6 @@ export default function RegisterMenu() {
     const [canSend, setCanSend] = useState<boolean>(false)
     const nav = useNavigate();
 
-    function bool2int(test: boolean): number {
-        if (test) {
-            return 1
-        }
-        return 0
-    } 
     const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value)
     }

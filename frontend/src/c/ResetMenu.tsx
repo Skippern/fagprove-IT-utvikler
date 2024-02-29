@@ -25,6 +25,7 @@ export default function ResetMenu() {
         console.log(result.status)
         if (result.status === 202) {
             console.log('New password sent')
+            nav('/login')
         } else {
             alert('Brukernavn og e-post stemmer ikke')
         }
