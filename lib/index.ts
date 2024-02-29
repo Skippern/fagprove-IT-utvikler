@@ -1,2 +1,0 @@
-import NfriApu from './NfriApi';
-
