@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 export default function LoginMenu() {
@@ -6,6 +6,7 @@ export default function LoginMenu() {
     const [password, setPassword] = useState<string>();
     const [config, setConfig] = useState<any>()
     const [api, setApi] = useState<string>('http://localhost:5000/api/v1')
+    const nav = useNavigate();
 
     const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value)
@@ -25,8 +26,9 @@ export default function LoginMenu() {
         const result = await fetch(url, {method: 'GET', headers: myHeader})
         if (result.status === 200) {
             document.cookie = `NFRIusername=${username}`;
-            document.cookie = `NFRIpass=${password}`;
-            alert('Du er logget inn!')    
+            document.cookie = `NFRIpass=${password}; max-age=604800`;
+            // alert('Du er logget inn!') 
+            nav('/dashboard')   
         } else {
             alert('Feil i brukernavn og passord')
         }
@@ -70,12 +72,12 @@ export default function LoginMenu() {
             <div>Top - Logo her</div>
             <div>Velkommen eller noe s&aring;nt</div>
             <div>
-                <form method=''>
+                {/* <form method=''> */}
                     <input id='username' name="username" placeholder="Brukernavn" onChange={handleUsernameChange} required/>
                     <input id='password' type='password' name='password' placeholder="Passord" onChange={handlePasswordChange} required/>
                     <input id='remember' type='checkbox' required/> Husk meg
                     <button type='submit' onClick={handleSetCookie}>Logg inn</button>
-                </form>
+                {/* </form> */}
             </div>
             <div>
                 <Link to='/forgotten'>Glemt passord?</Link>

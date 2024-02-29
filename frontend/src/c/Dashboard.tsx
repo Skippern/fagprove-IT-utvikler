@@ -1,4 +1,5 @@
 import React, {useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import DashTop from "./DashTop";
 import DashContent from './DashContent';
@@ -13,18 +14,19 @@ export default function Dashboard() {
     const [api, setApi] = useState<string>('http://localhost:5000/api/v1')
     const [user, setUser] = useState<string>()
     const [passwd, setPasswd] = useState<string>()
+    const nav = useNavigate();
 
-        const handleGetCookie = () => {
-            const cookies = document.cookie.split('; ');
-            const myCookie1 = cookies.find(cookie => cookie.startsWith('NFRIusername='));
-            const myCookie2 = cookies.find(cookie => cookie.startsWith('NFRIpass='))
-            if (myCookie1) {
-                setUser(myCookie1.split('=')[1])
-            }
-            if (myCookie2) {
-                setPasswd(myCookie2.split('=')[1])
-            }
-        }  
+    const handleGetCookie = () => {
+        const cookies = document.cookie.split('; ');
+        const myCookie1 = cookies.find(cookie => cookie.startsWith('NFRIusername='));
+        const myCookie2 = cookies.find(cookie => cookie.startsWith('NFRIpass='))
+        if (myCookie1) {
+            setUser(myCookie1.split('=')[1])
+        }
+        if (myCookie2) {
+            setPasswd(myCookie2.split('=')[1])
+        }
+    }  
 
     async function fetchNeo() {
         if (endDate === 0 && startDate === 0) {
@@ -46,8 +48,12 @@ export default function Dashboard() {
         }
         console.log(url);
         const result = await fetch(url, {method: "GET", headers: myHeader});
-        console.log(result.status);
         const datafromresult = await result.json();
+        console.log(result.status);
+        if (result.status !== 200) {
+            alert('Du er ikke logget inn!')
+            nav('/login')
+        }
         try {
             setNeo([...datafromresult['result']])
         } catch (error) {
@@ -55,9 +61,11 @@ export default function Dashboard() {
         }
     }
     useEffect(() => {
+        handleGetCookie();
         fetchNeo();
     }, [searchTrigger])
     useEffect(() => {
+        handleGetCookie();
         const fetchConfig = async () => {
             try {
                 const response = await fetch('./config.json');

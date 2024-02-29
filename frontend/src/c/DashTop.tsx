@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 interface Props {
     startDate: number;
     endDate: number;
@@ -8,6 +10,7 @@ interface Props {
 }
 
 export default function DashTop({startDate,endDate,searchTrigger,setStartDate,setEndDate,setSearchTrigger}: Props) {
+    const nav = useNavigate();
 
     function dateToUnixTime(dateString: string): number | null {
         const date = new Date(dateString);
@@ -48,6 +51,14 @@ export default function DashTop({startDate,endDate,searchTrigger,setStartDate,se
         setSearchTrigger(!searchTrigger)
     }
 
+    const handleLogOut = () => {
+        document.cookie = 'NFRIusername=; max-age: 0';
+        document.cookie = 'NFRIpass=; max-age: 0';
+        console.log('Cookies deleted')
+        alert('Du er nå logget ut.')
+        nav('/login')
+    }
+
     return (
         <div className="dashboard-top">
             <div>
@@ -56,7 +67,7 @@ export default function DashTop({startDate,endDate,searchTrigger,setStartDate,se
                 <button onClick={flipSearchTrigger}>S&Oslash;K</button>
             </div>
             <div>
-                <button>Logg Ut</button>
+                <button onClick={handleLogOut}>Logg Ut</button>
             </div>
         </div>
     )
