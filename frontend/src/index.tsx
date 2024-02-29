@@ -15,6 +15,7 @@ import ErrorPage from './c/ErrorPage';
 import Login from './c/Login';
 import Register from './c/Register';
 import Dashboard from './c/Dashboard';
+import GDPR from './c/GDPR';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,7 +27,7 @@ const router = createBrowserRouter(
         <Route path={'/register'} element={<Register/>}/>
         <Route path={'/dashboard'} element={<Dashboard/>}/>
         <Route path={'/forgotten'} element={<div>Nothing</div>} />
-        <Route path={'/GDPR'} element={<div>Side om GDPR og brukerbetingelser</div>} />
+        <Route path={'/GDPR'} element={<GDPR/>} />
       </Route>
   )
 )
