@@ -121,3 +121,19 @@ code {
   width: 90vw;
   height: 20vh;
 }
+
+
+.scatter-plot {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border: 1px solid purple;
+}
+
+.data-point {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: yellow;
+}
