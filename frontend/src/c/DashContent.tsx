@@ -75,7 +75,7 @@ export default function DashContent({neo}: Props) {
             } else if (diameter < 1000) {
                 newBar.values[2] += 1;
             } else {
-                newBar.labels[3] += 1;
+                newBar.values[3] += 1;
             }
             newScatter = [
                 ...newScatter,
