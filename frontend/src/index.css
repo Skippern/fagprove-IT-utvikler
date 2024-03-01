@@ -137,3 +137,17 @@ code {
   border-radius: 50%;
   background-color: yellow;
 }
+.scatter-label-speed {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  white-space: nowrap;
+  transform: rotate(-180deg);
+  text-align: center;
+}
+.scatter-label-size {
+  text-align: center;
+}
+.scatter-grid {
+  display: grid;
+  grid-template-columns: 1fr 30fr;
+}

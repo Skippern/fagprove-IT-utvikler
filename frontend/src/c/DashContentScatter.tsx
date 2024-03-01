@@ -5,38 +5,20 @@ interface Props {
 }
 
 export default function DashControlScatter({neo}: Props) {
-    // let x: string[] = [];
-    // let y: string[] = [];
-    // function makeScatter() {
-    //     x = []
-    //     y = []
-    //     Object.keys(neo).forEach((key) => {
-    //         x = [
-    //             ...x,
-    //             Math.floor(neo[key]['x']).toString()+'px'
-    //         ]
-    //         y = [
-    //             ...y,
-    //             Math.floor(neo[key]['y']).toString()+'px'
-    //         ]
-    //     })        
-    // }
-    // useEffect(() => {
-    //     makeScatter()
-    // }, [neo])
 
     return(
         <div className="dashboard-scatter">
+            <div className='scatter-grid'>
+            <div className='scatter-label-speed'>Hastighet</div>
             <div className='scatter-plot'>
-                {/* <span className='data-point' style={{left: '5px', top: '4px'}}></span>
-                <span className='data-point' style={{left: '50px', top: '45px'}}></span>
-                <span className='data-point' style={{left: '35px', top: '84px'}}></span> */}
-                {/* <span className='data-point' style={{left: '5px', top: '4px'}}></span> */}
                 {Object.keys(neo).map((i,j)=>(
-                    <span className='data-point' style={{ left: Math.floor(neo[j]['x']/5).toString()+'px', top: Math.floor(neo[j]['x']/10).toString()+'px'}}></span>
-                    // <span>{neo[j]['x']}/{neo[j]['y']} - x{x[j]} - y{y[j]} </span>
+                    <span className='data-point' 
+                        title={`Hastighet: ${Math.floor(neo[j]['y'])}km/s - Diameter: ${Math.floor(neo[j]['x'])}m`} 
+                        style={{ left: Math.floor(neo[j]['x']/4).toString()+'px', bottom: Math.floor(neo[j]['y']*5).toString()+'px'}}></span>
                 ))}
-            </div>
+                
+            </div></div>
+            <div className='scatter-label-size'>St&oslash;rrelse</div>
         </div>
     )
 }

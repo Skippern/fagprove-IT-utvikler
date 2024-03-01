@@ -60,13 +60,14 @@ export default function DashContent({neo}: Props) {
         return;
     }
     function updateCharts() {
+        const neoPlot = neoFiltered
         let newScatter: any[] = []
         const newBar = {
             labels: ['Veldig små', 'Små', 'Mellomstore', 'Store'],
             values: [0, 0, 0, 0],
         }
-        Object.keys(neo).forEach((key) => {
-            const diameter = neo[key]['diameter'];
+        Object.keys(neoPlot).forEach((key) => {
+            const diameter = neoPlot[key]['diameter'];
             if (diameter < 10) {
                 newBar.values[0] += 1;
             } else if (diameter < 100) {
@@ -78,7 +79,7 @@ export default function DashContent({neo}: Props) {
             }
             newScatter = [
                 ...newScatter,
-                {x: neo[key]['diameter'], y: neo[key]['velocity']}
+                {x: neoPlot[key]['diameter'], y: neoPlot[key]['velocity']}
             ]
         })
         setBarData(newBar)
@@ -91,7 +92,7 @@ export default function DashContent({neo}: Props) {
     }
     useEffect(() => {
         updateCharts();
-    }, [neo])
+    }, [neo,neoFiltered])
     useEffect(() => {
         updateFilter();
     }, [neo,filterSize,filterDangerous,filterMaxSpeed,filterMinSpeed,filterRange])
