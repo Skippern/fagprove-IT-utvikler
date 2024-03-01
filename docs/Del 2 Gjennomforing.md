@@ -30,3 +30,5 @@ Full fokus på frontend, delt siden inn i felt hvor hvert felt er eget React.TS 
 Fullføre de siste punktene i frontend
 
 ## Dag 7
+
+Siste polering av frontend, debugging, og skriving av dokumentasjon.
