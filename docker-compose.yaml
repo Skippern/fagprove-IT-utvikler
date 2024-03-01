@@ -14,12 +14,14 @@ services:
       - '3307:3306'
     volumes_from:
       - data
+    restart: always
   backend:
     build: ./backend
     ports:
       - "5000:5000"
     depends_on:
       - db
+    restart: always
   frontend:
     build: ./frontend
     ports:
