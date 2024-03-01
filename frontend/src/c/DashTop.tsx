@@ -27,9 +27,9 @@ export default function DashTop({startDate,endDate,searchTrigger,setStartDate,se
         return `${year}-${month}-${day}`
     }
     const handleInputStartChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.value)
+        // console.log(event.target.value)
         const value = dateToUnixTime(event.target.value)
-        console.log(value)
+        // console.log(value)
         if (value !== null) {
             setStartDate(value)
         } else {
@@ -37,9 +37,9 @@ export default function DashTop({startDate,endDate,searchTrigger,setStartDate,se
         }
     }
     const handleInputEndChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.value)
+        // console.log(event.target.value)
         const value = dateToUnixTime(event.target.value)
-        console.log(value)
+        // console.log(value)
         if (value !== null) {
             setEndDate(value)
         } else {
@@ -47,14 +47,14 @@ export default function DashTop({startDate,endDate,searchTrigger,setStartDate,se
         }
     }
     const flipSearchTrigger = () => {
-        console.log('button pushed')
+        // console.log('button pushed')
         setSearchTrigger(!searchTrigger)
     }
 
     const handleLogOut = () => {
         document.cookie = 'NFRIusername=; max-age: 0';
         document.cookie = 'NFRIpass=; max-age: 0';
-        console.log('Cookies deleted')
+        // console.log('Cookies deleted')
         alert('Du er nå logget ut.')
         nav('/login')
     }

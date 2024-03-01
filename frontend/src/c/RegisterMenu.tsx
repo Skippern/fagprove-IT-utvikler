@@ -72,7 +72,7 @@ export default function RegisterMenu() {
                 const response = await fetch('./config.json');
                 const jsonConfig = await response.json();
                 setConfig(jsonConfig)
-                console.log(jsonConfig)
+                // console.log(jsonConfig)
             } catch (error) {
                 console.log('Error fetch config => ', error)
             }
