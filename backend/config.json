@@ -5,11 +5,11 @@
     "db_port": 3306,
     "db_user": "nfri",
     "db_passwd": "fagpr0ve",
-    "mail-server": "sandbox.smtp.mailtrap.io",
-    "mail-port": 2525,
+    "mail-server": "live.smtp.mailtrap.io",
+    "mail-port": 587,
     "mail-use-tls": true,
     "mail-use-ssl": false,
-    "mail-username": "4010911e65a969",
-    "mail-password": "83e96deb829825",
+    "mail-username": "api",
+    "mail-password": "b292e9ce0e5bf7fd36bde6c3552eabfc",
     "sender-email": "nfri@demomailtrap.com"
 }

@@ -116,7 +116,7 @@ def v1_userReset():
         msg = Message('Ditt passord har blitt endret',
                     sender=c['sender-email'],
                     recipients=[mail])
-        msg.body('Ditt nye passord er: %s' % new_pass)
+        msg.body('Bruker: %s\nDitt nye passord er: %s' % (username, new_pass))
         mailer.send(msg)
     except Exception as e:
         print(e)
