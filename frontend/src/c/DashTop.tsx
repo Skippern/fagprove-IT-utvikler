@@ -60,14 +60,17 @@ export default function DashTop({startDate,endDate,searchTrigger,setStartDate,se
     }
 
     return (
-        <div className="dashboard-top">
-            <div>
-                <label title="Dato Start">Start Dato <input name="startDate"  value={startDate === 0 ? '' : unixTimeToDate(startDate)} type="date" placeholder="Dato start" onChange={handleInputStartChange}/></label>
-                <label title="Dato Slutt">Slutt Dato <input name="endDate"  value={endDate === 0 ? '' : unixTimeToDate(endDate)} type="date" placeholder="Dato slutt" onChange={handleInputEndChange}/></label>
-                <button onClick={flipSearchTrigger}>S&Oslash;K</button>
-            </div>
-            <div>
-                <button onClick={handleLogOut}>Logg Ut</button>
+        <div>
+            <h2>NFRIs søkemotor for jordnære asteroider</h2>
+            <div className="dashboard-top">
+                <div>
+                    <label title="Dato Start">Start Dato <input name="startDate"  value={startDate === 0 ? '' : unixTimeToDate(startDate)} type="date" placeholder="Dato start" onChange={handleInputStartChange}/></label>
+                    <label title="Dato Slutt">Slutt Dato <input name="endDate"  value={endDate === 0 ? '' : unixTimeToDate(endDate)} type="date" placeholder="Dato slutt" onChange={handleInputEndChange}/></label>
+                    <button onClick={flipSearchTrigger}>S&Oslash;K</button>
+                </div>
+                <div>
+                    <button onClick={handleLogOut}>Logg Ut</button>
+                </div>
             </div>
         </div>
     )
