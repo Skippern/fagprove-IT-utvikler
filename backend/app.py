@@ -181,7 +181,7 @@ def v1_search():
     if toTime:
         toTime = int(toTime)/1000
         toTime = datetime.datetime.utcfromtimestamp(toTime).strftime(datefmt)
-    result = getAstroides(c)
+    result = getAstroides(c, fromTime, toTime)
     r = {
         'from': fromTime,
         'to': toTime,
