@@ -17,11 +17,11 @@ class NfriApi {
     constructor() {
     }
     static setCredentials(myCredentials: Credentials): void {
-        this.credentials = myCredentials
-        this.headers.set('Authorization', 'Basic ' + btoa(`${this.credentials.user}:${this.credentials.password}`))
+        this.credentials = myCredentials;
+        this.headers.set('Authorization', 'Basic ' + btoa(`${this.credentials.user}:${this.credentials.password}`));
     }
     static setEndpoint(myEndPoint: EndPoint): void {
-        this.endPoint = myEndPoint
+        this.endPoint = myEndPoint;
     }
     static getAsteroids(tidStart:number,tidSlutt:number): any {
         if (this.credentials && this.endPoint) {
@@ -34,7 +34,7 @@ class NfriApi {
                     throw new Error(`HTTP Error! Status: ${response.status}`)
                 }
                 return response.json();
-            })
+            });
         } else {
             // Not logged in
             if (!this.credentials) {
