@@ -33,8 +33,6 @@ export default function Dashboard() {
             return
         }
         handleGetCookie();
-        // const user = 'NAIF'
-        // const passwd = 'AstroiderErKule123&'
         const myHeader = {
             Accept: '*/*',
             Authorization: 'Basic '+ btoa(`${user}:${passwd}`),
@@ -46,10 +44,8 @@ export default function Dashboard() {
         if (endDate > 0) {
             url = url + 'to='+endDate.toString()
         }
-        // console.log(url);
         const result = await fetch(url, {method: "GET", headers: myHeader});
         const datafromresult = await result.json();
-        // console.log(result.status);
         if (result.status !== 200) {
             alert('Du er ikke logget inn!')
             nav('/login')
@@ -71,7 +67,6 @@ export default function Dashboard() {
                 const response = await fetch('./config.json');
                 const jsonConfig = await response.json();
                 setConfig(jsonConfig)
-                // console.log(jsonConfig)
             } catch (error) {
                 console.log('Error fetch config => ', error)
             }
