@@ -1,5 +1,3 @@
-// import Headers from 'node'
-
 interface Credentials {
     user: string;
     password: string;
@@ -9,43 +7,44 @@ interface EndPoint {
 }
 
 
-class NfriApi {
-    private static credentials: Credentials | null = null;
-    private static endPoint: EndPoint | null = null;
-    private static headers: Headers = new Headers();
+export default function NfriApi() {
+    this.creddentials = null;
+    this.endPoint = null;
+    this.headers = new Headers();
 
-    constructor() {
-    }
-    static setCredentials(myCredentials: Credentials): void {
+    this.setCredentials = function(myCredentials: Credentials): void {
         this.credentials = myCredentials;
-        this.headers.set('Authorization', 'Basic ' + btoa(`${this.credentials.user}:${this.credentials.password}`));
+        this.headers.append('Authorization', 'Basic ' + btoa(`${this.credentials.user}:${this.credentials.password}`));
     }
-    static setEndpoint(myEndPoint: EndPoint): void {
+    this.setEndpoint = function(myEndPoint: EndPoint): void {
         this.endPoint = myEndPoint;
     }
-    static getAsteroids(tidStart:number,tidSlutt:number): any {
+    this.getAsteroids = function(tidStart:number,tidSlutt:number): any {
         if (this.credentials && this.endPoint) {
-            fetch(this.endPoint.url, {
+            const myUrl = this.endPoint.url + '?from=' + tidStart.toString() + '&to=' + tidSlutt.toString()
+            fetch(myUrl, {
                 method: 'GET',
-                headers: NfriApi.headers,
+                headers: this.headers,
             })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error(`HTTP Error! Status: ${response.status}`)
+                    return "HTTP Error"
+                    return { error: `HTTP Error! ${response.status}` }
+                    // throw new Error(`HTTP Error! Status: ${response.status}`)
                 }
                 return response.json();
             });
         } else {
             // Not logged in
             if (!this.credentials) {
+                return "Missing credentials!"
                 throw new Error('Missing credentials. Set with NfriApi.setCredentials({user:\'name\',password:\'secret\'})')
             }
             // Missing endpoint
             if (!this.endPoint) {
+                return "Missing endpoint!"
                 throw new Error('Missing endpoint. Set with NfriApi.setEndpoint({url:\'https://example.com:5000/api/v1/search\'})')
             }
         }
     }
 }
-
-export default NfriApi;
