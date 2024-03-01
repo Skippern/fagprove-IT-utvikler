@@ -1,3 +1,5 @@
+// import { headers } from "next/headers";
+
 interface Credentials {
     user: string;
     password: string;
@@ -22,6 +24,9 @@ export default function NfriApi() {
     }
     this.getAsteroids = function(tidStart:number,tidSlutt:number): any {
         console.log('Look to the stars!')
+        console.log('User: ',this.credentials.user)
+        console.log('Passwd: ',this.credentials.password)
+        console.log(this.headers)
         if (this.credentials && this.endPoint) {
             const myUrl = (this.endPoint.url + '?from=' + tidStart.toString() + '&to=' + tidSlutt.toString());
             fetch(myUrl, {
@@ -30,9 +35,6 @@ export default function NfriApi() {
             })
             .then(response => {
                 if (!response.ok) {
-                    this.console.log(`HTTP Error ${response.status}`)
-                    // return `HTTP Error ${response.status}`
-                    // return { error: `HTTP Error! ${response.status}` }
                     throw new Error(`HTTP Error! Status: ${response.status}`)
                 }
                 return response.json();
@@ -40,12 +42,10 @@ export default function NfriApi() {
         } else {
             // Not logged in
             if (!this.credentials) {
-                // return "Missing credentials!"
                 throw new Error('Missing credentials. Set with NfriApi.setCredentials({user:\'name\',password:\'secret\'})')
             }
             // Missing endpoint
             if (!this.endPoint) {
-                // return "Missing endpoint!"
                 throw new Error('Missing endpoint. Set with NfriApi.setEndpoint({url:\'https://example.com:5000/api/v1/search\'})')
             }
             throw new Error('Not sure what went wrong here?')
