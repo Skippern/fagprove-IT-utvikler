@@ -13,6 +13,9 @@ class NfriApi {
     private static credentials: Credentials | null = null;
     private static endPoint: EndPoint | null = null;
     private static headers: Headers = new Headers();
+
+    constructor() {
+    }
     static setCredentials(myCredentials: Credentials): void {
         this.credentials = myCredentials
         this.headers.append('Authorization', 'Basic ' + btoa(`${this.credentials.user}:${this.credentials.password}`))
@@ -39,7 +42,7 @@ class NfriApi {
             }
             // Missing endpoint
             if (!this.endPoint) {
-                throw new Error('Missing endpoint. Set with NfriApi.setEndpoint({url:\'https://example.com:4000/api/v1/search\'})')
+                throw new Error('Missing endpoint. Set with NfriApi.setEndpoint({url:\'https://example.com:5000/api/v1/search\'})')
             }
         }
     }

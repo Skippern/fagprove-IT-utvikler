@@ -22,8 +22,10 @@ except:
         "mail-server": 'smtp.example.com',
         'mail-port': 587,
         'mail-use-tls': True,
+        'mail-use-ssl': False,
         'mail-username': 'your-email@example.com',
-        'mail-password': 'your-email-password'
+        'mail-password': 'your-email-password',
+        'sender-email': 'post@nfri.no'
     }
     with open('config.json', 'w', encoding='utf-8') as file:
         file.write(json.dumps(c, indent=4))
@@ -46,6 +48,7 @@ app = Flask(__name__)
 app.config['MAIL_SERVER'] = c['mail-server']
 app.config['MAIL_PORT'] = c['mail-port']
 app.config['MAIL_USE_TLS'] = c['mail-use-tls']
+app.config['MAIL_USE_SSL'] = c['mail-use-ssl']
 app.config['MAIL_USERNAME'] = c['mail-username']
 app.config['MAIL_PASSWORD'] = c['mail-password']
 mailer = Mail(app)
@@ -111,7 +114,7 @@ def v1_userReset():
     new_pass = generate_password()
     try:
         msg = Message('Ditt passord har blitt endret',
-                    sender='post@naif.no',
+                    sender=c['sender-email'],
                     recipients=[mail])
         msg.body('Ditt nye passord er: %s' % new_pass)
         mailer.send(msg)

@@ -5,9 +5,11 @@
     "db_port": 3306,
     "db_user": "nfri",
     "db_passwd": "fagpr0ve",
-    "mail-server": "smtp.example.com",
-    "mail-port": 587,
+    "mail-server": "sandbox.smtp.mailtrap.io",
+    "mail-port": 2525,
     "mail-use-tls": true,
-    "mail-username": "your-email@example.com",
-    "mail-password": "your-email-password"
+    "mail-use-ssl": false,
+    "mail-username": "4010911e65a969",
+    "mail-password": "83e96deb829825",
+    "sender-email": "nfri@demomailtrap.com"
 }
