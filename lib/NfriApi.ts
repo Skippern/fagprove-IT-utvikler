@@ -21,8 +21,9 @@ export default function NfriApi() {
         this.endPoint = myEndPoint;
     }
     this.getAsteroids = function(tidStart:number,tidSlutt:number): any {
+        console.log('Look to the stars!')
         if (this.credentials && this.endPoint) {
-            let myUrl = (this.endPoint.url + '?from=' + tidStart.toString() + '&to=' + tidSlutt.toString());
+            const myUrl = (this.endPoint.url + '?from=' + tidStart.toString() + '&to=' + tidSlutt.toString());
             fetch(myUrl, {
                 method: 'GET',
                 headers: this.headers,
