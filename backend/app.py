@@ -1,10 +1,8 @@
 from flask import Flask, jsonify, request
 from flask_mail import Mail, Message
 from flask_cors import CORS
-# from flask_httpauth import HTTPBasicAuth
 import json
 import mysql.connector
-# import time
 import datetime
 
 from lib.getter import *
@@ -18,7 +16,6 @@ except:
     c ={
         "nasa_api_key": "CHANGE ME",
         "db_site": "db",
-        # "db_port": 33060,
         "db": "nfri",
         "db_user": "nfri",
         "db_passwd": "CHANGE ME",
@@ -43,7 +40,6 @@ try:
 except Exception as e:
     print('Database ikke koblet til')
     print(e)
-    # exit(4)
 
 app = Flask(__name__)
 
