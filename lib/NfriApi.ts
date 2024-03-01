@@ -18,7 +18,7 @@ class NfriApi {
     }
     static setCredentials(myCredentials: Credentials): void {
         this.credentials = myCredentials
-        this.headers.append('Authorization', 'Basic ' + btoa(`${this.credentials.user}:${this.credentials.password}`))
+        this.headers.set('Authorization', 'Basic ' + btoa(`${this.credentials.user}:${this.credentials.password}`))
     }
     static setEndpoint(myEndPoint: EndPoint): void {
         this.endPoint = myEndPoint

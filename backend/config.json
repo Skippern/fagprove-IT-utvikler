@@ -11,5 +11,5 @@
     "mail-use-ssl": false,
     "mail-username": "api",
     "mail-password": "b292e9ce0e5bf7fd36bde6c3552eabfc",
-    "sender-email": "nfri@demomailtrap.com"
+    "sender-email": "nfri(at)demomailtrap.com"
 }
