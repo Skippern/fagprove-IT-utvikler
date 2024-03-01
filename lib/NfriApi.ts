@@ -23,10 +23,10 @@ export default function NfriApi() {
         this.endPoint = myEndPoint;
     }
     this.getAsteroids = function(tidStart:number,tidSlutt:number): any {
-        console.log('Look to the stars!')
-        console.log('User: ',this.credentials.user)
-        console.log('Passwd: ',this.credentials.password)
-        console.log(this.headers)
+        // console.log('Look to the stars!')
+        // console.log('User: ',this.credentials.user)
+        // console.log('Passwd: ',this.credentials.password)
+        // console.log(this.headers)
         if (this.credentials && this.endPoint) {
             const myUrl = (this.endPoint.url + '?from=' + tidStart.toString() + '&to=' + tidSlutt.toString());
             fetch(myUrl, {
