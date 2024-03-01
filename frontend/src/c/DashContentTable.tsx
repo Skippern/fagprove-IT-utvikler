@@ -22,7 +22,7 @@ export default function DashContentTable({neo}: Props) {
         <div className="dashboard-table">
             <table className="astroide-tabell">
                 <thead>
-                    <tr>
+                    <tr key={'table-head'}>
                         <th>Navn</th>
                         <th>St&oslash;rrelse<br/>(Diameter)</th>
                         <th>Hastighet</th>
@@ -35,7 +35,7 @@ export default function DashContentTable({neo}: Props) {
                 <tbody>
                     {
                         Object.keys(neo).map((i,j) => (
-                        <tr>
+                        <tr key={'table-row:'+i.toString()}>
                             <td>{neo[i]['name']}</td>
                             <td>{roundToDecimal(neo[i]['diameter'], 3)}m</td>
                             <td>{roundToDecimal(neo[i]['velocity'], 3)}km/s</td>
