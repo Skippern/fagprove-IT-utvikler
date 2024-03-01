@@ -14,7 +14,8 @@ export default function NfriApi() {
 
     this.setCredentials = function(myCredentials: Credentials): void {
         this.credentials = myCredentials;
-        this.headers.append('Authorization', 'Basic ' + btoa(`${this.credentials.user}:${this.credentials.password}`));
+        // this.headers.append('Authorization', 'Basic ' + btoa(`${this.credentials.user}:${this.credentials.password}`));
+        // this.headers.append('Authorization', 'Basic ' + btoa(`${this.credentials.user}:${this.credentials.password}`));
     }
     this.setEndpoint = function(myEndPoint: EndPoint): void {
         this.endPoint = myEndPoint;
@@ -28,9 +29,10 @@ export default function NfriApi() {
             })
             .then(response => {
                 if (!response.ok) {
-                    return "HTTP Error"
+                    this.console.log(`HTTP Error ${response.status}`)
+                    // return `HTTP Error ${response.status}`
                     return { error: `HTTP Error! ${response.status}` }
-                    // throw new Error(`HTTP Error! Status: ${response.status}`)
+                    throw new Error(`HTTP Error! Status: ${response.status}`)
                 }
                 return response.json();
             });
